@@ -1,0 +1,16 @@
+\section{Introducción}
+Se presenta a continuación un problema de servicio y colas de un banco. El desarrollo del mismo será realizado mediante el software WinQSB, que permite una simulación y análisis del mismo.
+
+\subsection{Problema}
+Un banco tiene dos cajeros automáticos, que siguen una distribución exponencial, atienden a razón de 1,5 clientes/minuto, la tasa de llegadas de clientes sigue una distribución de Poisson y es igual a 30 clientes/hora. Se pide:
+
+\begin{enumerate}[label=\Alph*]
+    \item Número promedio de clientes en el sistema
+    \item Tiempo promedio de un cliente en el sistema
+    \item Porcentaje de tiempo de cajero libre
+    \item Sensibilidad del sistema en 24 horas, usando el comando “simulate the system”, “semilla random por defecto”, “disciplina FIFO”, interprete cada una de las “performance measure” o “medidas de rendimiento”
+    \item Análisis de sensibilidad para el parámetro “tasa de llegada λ = 30 clientes/hora”, con una variación de 30 a 100 clientes/horas, con un incremento de 10 clientes/hora, use el comando “solve and analyze”, “arrival rate λ”, “approximation by G/G/s” con start = 30, end = 100, step = 10; Gráfico de sensibilidad, use comando “Results”, “show sensitive analysis - graph”
+    \item Haga un Análisis de Sensibilidad desde 2 servidores hasta 8 servidores con un paso de 1, con la siguiente información complementaria: costo servidor ocupado/hora = 5, costo servidor ocioso/hora = 1, costo cliente en espera = 0,5, costo cliente servido/hora = 3, costo cliente no atendido = 1, costo unitario capacidad de la cola = 3; use comando “perform capacity analysis”, “approximation by G/G/s”, N° server = 2, start = 2, end = 8, step = 1
+\end{enumerate}
+
+\pagebreak
