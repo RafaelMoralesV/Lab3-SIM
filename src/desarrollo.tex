@@ -24,21 +24,74 @@ Además, tenemos los siguientes datos:
 \pagebreak
 
 \subsection{Simulación}
+\subsubsection{Nuevo problema}
+Para resolver este problema, nos dirigiremos a la aplicación de análisis de cola (\quotes{Queuing Analysis}), donde se nos presentará la siguiente pantalla inicial, al intentar generar un nuevo proyecto:
+\insertimage[\label{img:winqsb1}]{winqsb/1.png}{scale=0.7}{Generación de un problema en la aplicación \quotes{Queuing Analysis}}
 
-\insertimage[\label{img:winqsb1}]{winqsb/1.png}{scale=1}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb2}]{winqsb/2.png}{scale=1}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb3}]{winqsb/3.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb4}]{winqsb/4.png}{scale=1}{Imagen de WinQSB}
+Dar \quotes{OK} nos mostrará la siguiente tabla, que rellenaremos con los valores entregados anteriormente, nuestra tasa de atención (Ecuación \refeq{eqn:tasa-serv}), y nuestra tasa de llegada (Ecuación \refeq{eqn:tasa-llegada}), tal como se muestra en la siguiente figura:
+\insertimage[\label{img:winqsb2}]{winqsb/2.png}{scale=0.7}{Tabla con los datos iniciales provistos por el problema.}
+
+Ingresar el comando de resolver el problema nos arroja la siguiente tabla de análisis de desempeño:
+\insertimage[\label{img:winqsb3}]{winqsb/3.png}{width=\textwidth}{Tabla de medición de desempeño}
+
+Esta tabla contiene datos interesantes. Revisándola, podemos obtener la siguiente información:
+\begin{itemize}
+    \item La cantidad promedio de clientes en el sistema (Correspondiente a $L$, o $L_w$) es de tan solo $0.3429$.
+    \item El porcentaje de utilización del sistema es tan solo de un $16.6667\%$, lo que habla de un tiempo de ocio de al rededor de un $83.333\%$.
+    \item El tiempo promedio de un cliente en el sistema es de 0.0114 horas, o al rededor de 41 segundos!
+    \item El tiempo de espera promedio, de forma similar, es también extremadamente corto, con un valor de $0.0003$ horas, o al rededor de 1 segundo.
+\end{itemize}
+
+\subsubsection{Simulación del sistema}
+A continuación, entonces, se utilizará el comando \quotes{Solve and Analyze} , en su opción de \quotes{Simulate the System}, para generar una simulación de este sistema. Se presenta la pantalla emergente para la especificación de esta simulación, que se hará de acuerdo a los datos mostrados en la siguiente figura:
+\insertimage[\label{img:winqsb4}]{winqsb/4.png}{scale=0.6}{Especificación de la simulación}
+
+Similar a la figura \ref{img:winqsb3}, obtenemos una tabla de medida de desempeño a partir de una simulación:
 \insertimage[\label{img:winqsb5}]{winqsb/5.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb6}]{winqsb/6.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb7}]{winqsb/7.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb8}]{winqsb/8.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb9}]{winqsb/9.png}{scale=1}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb10}]{winqsb/10.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb11}]{winqsb/11.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb12}]{winqsb/12.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb13}]{winqsb/13.png}{width=\textwidth}{Imagen de WinQSB}
-\insertimage[\label{img:winqsb14}]{winqsb/14.png}{width=\textwidth}{Imagen de WinQSB}
+
+Haciendo un análisis similar y comparativo entre ambas tablas, podemos ver lo siguiente:
+
+\begin{itemize}
+    \item Por supuesto, la tasa de llegada y servicio es idéntica.
+    \item La tasa efectiva de llegada y atención, sin embargo, se muestran como $27.8927$ y $27.8511$, respectivamente.
+    \item La utilización del sistema baja ligeramente a un $15.6925\%$.
+    \item El número promedio de clientes en el sistema baja, también ligeramente, a $0.3225$.
+    \item El tiempo de atención y espera en la cola son efectivamente idénticos, variando el primero únicamente en menos de 1 segundo.
+    \item La probabilidad de que el sistema esté en ocio, o de que un cliente espere, se mantienen efectivamente iguales.
+\end{itemize}
+
+\subsubsection{Análisis de sensibilidad}
+Generaremos un nuevo análisis de sensibilidad desde el comando de resultados, con la variación de nuestra tasa de llegada. Este valor variará desde los 30 a los 100 clientes por hora, en saltos de 10. La especificación para esto se muestra a continuación:
+
+\insertimage[\label{img:winqsb6}]{winqsb/6.png}{scale=0.7}{Especificación para análisis de sensibilidad para la tasa de llegada}
+
+La siguiente tabla (a la cual se le ha omitido la mitad de las columnas, debido a su poca relevancia y en ayuda del formato del documento) muestra los resultados de este análisis de sensibilidad:
+
+\insertimage[\label{img:winqsb7}]{winqsb/7.png}{width=\textwidth}{Tabla de resultados del análisis de sensibilidad para la tasa de llegada}
+
+Incluido además, se encuentra el gráfico de personas promedio en el sistema para este análisis de sensibilidad. Podemos ver como el valor ronda entre los 0.3 a 1.6 clientes en promedio dentro del sistema:
+
+\insertimage[\label{img:winqsb8}]{winqsb/8.png}{width=\textwidth}{Gráfico de Clientes promedio en el sistema versus tasa de llegada.}
+
+\subsubsection{Análisis de sensibilidad para servidores}
+Se hará, entonces, un nuevo análisis de sensibilidad, esta vez para los servidores. Para este nuevo análisis, es relevante cambiar el problema original presentado en la figura \ref{img:winqsb2}, para incluir el variado costo propuesto en la opción G entregado en la especificación original del problema.
+
+\insertimage[\label{img:winqsb9}]{winqsb/9.png}{scale=0.7}{Alteración a la tabla de datos iniciales para incluir los variados costos del punto G del problema original}
+
+Se hará, entonces, un nuevo análisis de sensibilidad centrado en el número de los servidores. Este análisis se hará en pasos de 1, iniciando en 2 servidores, hasta los 8.
+
+\insertimage[\label{img:winqsb10}]{winqsb/10.png}{scale=0.6}{Parámetros de análisis de sensibilidad para servidores.}
+
+Se entrega, entonces, la tabla de resultados para el análisis de sensibilidad, con la mitad anteriormente omitida en la figura \ref{img:winqsb7}, que contiene la información de costos para este análisis.
+\begin{images}[\label{img:winqsb11-12}]{Tabla de resultados del análisis de sensibilidad para el número de servidores.}
+    \addimage[\label{img:winqsb11}]{winqsb/11.png}{width=\textwidth}{Tabla de resultados, parte 1}
+    \addimage[\label{img:winqsb12}]{winqsb/12.png}{width=\textwidth}{Tabla de resultados, parte 2}
+\end{images}
+
+Las siguientes figuras, además, representan los gráficos para el costo total en función del número de servidores, y la utilización del sistema en la misma función.
+
+\insertimage[\label{img:winqsb13}]{winqsb/13.png}{width=\textwidth}{Costo total versus número de servidores}
+\insertimage[\label{img:winqsb14}]{winqsb/14.png}{width=\textwidth}{Utilización del sistema versus número de servidores.}
 
 
 \pagebreak
